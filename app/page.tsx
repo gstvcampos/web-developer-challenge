@@ -1,7 +1,9 @@
+import NewPost from '@/components/forms/NewPost'
+
 export default function Home() {
   return (
     <div>
-      <h1>ola</h1>
+      <NewPost />
     </div>
   )
 }

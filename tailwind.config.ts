@@ -19,6 +19,7 @@ const config: Config = {
           'accent-content': '#9f9f9f',
           neutral: '#5f5f5f',
           'base-100': '#343434',
+          'base-200': '#494949',
           info: '#7a7a7a',
           success: '#00ff00',
           error: '#ff0000',

@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <div>
       <NewPost />
-      {posts && posts.map((post) => <PostContainer key={post.id} />)}
+      {posts && posts.map((post) => <PostContainer key={post.id} post={post} />)}
     </div>
   )
 }

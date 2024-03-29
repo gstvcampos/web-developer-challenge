@@ -1,4 +1,4 @@
-import Header from '@/components/Header'
+import Header from '@/components/layout/Header'
 import { cn } from '@/lib/ultis'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'

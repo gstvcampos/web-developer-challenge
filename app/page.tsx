@@ -1,5 +1,5 @@
-import PostContainer from '@/components/PostContainer'
 import NewPost from '@/components/forms/NewPost'
+import PostContainer from '@/components/layout/PostContainer'
 import { prisma } from '@/db/prisma'
 
 export default async function Home() {

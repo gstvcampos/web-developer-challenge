@@ -6,10 +6,16 @@ import { createPostSchema } from '@/schemas/post'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
+import { Input } from '../ui/Input'
 
 export default function NewPost() {
   const [isPending, startTransition] = useTransition()
-  const { register, handleSubmit, reset } = useForm<CreatePost>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreatePost>({
     resolver: zodResolver(createPostSchema),
     defaultValues: {
       author: '',
@@ -25,16 +31,8 @@ export default function NewPost() {
 
   return (
     <form className="flex flex-col" onSubmit={handleSubmit(handleCreatePost)}>
-      <input
-        className="input bg-base-200"
-        type="text"
-        {...register('author', { required: true })}
-      />
-      <input
-        className="input bg-base-200"
-        type="text"
-        {...register('content', { required: true })}
-      />
+      <Input {...register('author')} error={errors.author} />
+      <Input {...register('content')} error={errors.content} />
       <div>
         <button
           type="button"

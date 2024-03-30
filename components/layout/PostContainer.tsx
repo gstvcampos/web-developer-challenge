@@ -8,7 +8,7 @@ export default function PostContainer({ post }: { post: Post }) {
       </div>
       <div>
         <p>{post.content}</p>
-        <div>
+        <div className="flex flex-col">
           <span>Enviado por</span>
           <span>{post.author}</span>
         </div>

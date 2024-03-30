@@ -9,7 +9,6 @@ export default function NewPost() {
   })
 
   const onSubmit = async (data) => {
-    console.log(data)
     createPost(data)
     reset()
   }

@@ -1,20 +1,30 @@
 'use client'
 
+import { CreatePost } from '@/@types/post'
 import createPost from '@/actions/createPost'
+import { createPostSchema } from '@/schemas/post'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 
 export default function NewPost() {
-  const { register, handleSubmit, formState, reset } = useForm({
-    mode: 'onChange',
+  const [isPending, startTransition] = useTransition()
+  const { register, handleSubmit, reset } = useForm<CreatePost>({
+    resolver: zodResolver(createPostSchema),
+    defaultValues: {
+      author: '',
+      content: '',
+    },
   })
 
-  const onSubmit = async (data) => {
-    createPost(data)
-    reset()
+  const handleCreatePost = (values: CreatePost) => {
+    startTransition(() => {
+      createPost(values)
+    })
   }
 
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col" onSubmit={handleSubmit(handleCreatePost)}>
       <input
         className="input bg-base-200"
         type="text"
@@ -33,11 +43,7 @@ export default function NewPost() {
         >
           Descartar
         </button>
-        <button
-          type="submit"
-          className="bg-primary btn"
-          disabled={formState.isLoading}
-        >
+        <button type="submit" className="bg-primary btn" disabled={isPending}>
           Publicar
         </button>
       </div>

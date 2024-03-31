@@ -1,10 +1,13 @@
 import { SVGProps } from 'react'
 
 export const ImagePlaceholderIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>
-    <defs>
-      <style>{'.cls-1{fill:#9f9f9f}'}</style>
-    </defs>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="#9f9f9f"
+    {...props}
+  >
     <g id="image" transform="translate(-762 -463)">
       <g id="image-2" data-name="image" transform="translate(761.55 463.5)">
         <path

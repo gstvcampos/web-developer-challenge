@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { Input } from '../ui/Input'
-import InputImage from '../ui/InputImg'
+import { InputImage } from '../ui/InputImg'
 import { Textarea } from '../ui/Textare'
 
 export default function NewPost() {
@@ -26,7 +26,7 @@ export default function NewPost() {
     },
   })
 
-  const handleCreatePost = (values: CreatePost) => {
+  const onSubmit = (values: CreatePost) => {
     startTransition(() => {
       createPost(values)
     })
@@ -37,15 +37,31 @@ export default function NewPost() {
     reset()
   }
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newFile = e.target.files?.[0]
+    if (newFile) {
+      const fileType = newFile.type
+      const validImageTypes = [
+        'image/gif',
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+      ]
+      if (validImageTypes.includes(fileType)) {
+        setAvatar(newFile)
+      }
+    }
+  }
+
   return (
     <form
       className="flex flex-col items-center bg-accent border border-[#3b3b3b] rounded-[3px] p-6"
-      onSubmit={handleSubmit(handleCreatePost)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <InputImage
         avatar={avatar}
         setAvatar={setAvatar}
-        {...register('avatar')}
+        onChange={handleFileChange}
       />
       <Input
         {...register('author')}
@@ -63,7 +79,7 @@ export default function NewPost() {
           type="button"
           className="btn btn-ghost underline"
           onClick={handleResete}
-          disabled={!isDirty || isPending || !avatar}
+          disabled={!isDirty || isPending}
         >
           Descartar
         </button>

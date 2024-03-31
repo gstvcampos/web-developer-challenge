@@ -17,7 +17,7 @@ export default function NewPost() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
   } = useForm<CreatePost>({
     resolver: zodResolver(createPostSchema),
     defaultValues: {
@@ -26,14 +26,15 @@ export default function NewPost() {
     },
   })
 
-  function getFile(file: File | null) {
-    setAvatar(file)
-  }
-
   const handleCreatePost = (values: CreatePost) => {
     startTransition(() => {
       createPost(values)
     })
+  }
+
+  const handleResete = () => {
+    setAvatar(null)
+    reset()
   }
 
   return (
@@ -41,7 +42,11 @@ export default function NewPost() {
       className="flex flex-col items-center bg-accent border border-[#3b3b3b] rounded-[3px] p-6"
       onSubmit={handleSubmit(handleCreatePost)}
     >
-      <InputImage getFile={getFile} {...register('avatar')} />
+      <InputImage
+        avatar={avatar}
+        setAvatar={setAvatar}
+        {...register('avatar')}
+      />
       <Input
         {...register('author')}
         placeholder="Digite seu nome"
@@ -57,11 +62,16 @@ export default function NewPost() {
         <button
           type="button"
           className="btn btn-ghost underline"
-          onClick={() => reset()}
+          onClick={handleResete}
+          disabled={!isDirty || isPending || !avatar}
         >
           Descartar
         </button>
-        <button type="submit" className="bg-primary btn" disabled={isPending}>
+        <button
+          type="submit"
+          className="bg-primary btn"
+          disabled={!isValid || isPending}
+        >
           Publicar
         </button>
       </div>

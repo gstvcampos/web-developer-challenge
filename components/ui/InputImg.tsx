@@ -29,7 +29,7 @@ export default function InputImage({
   }
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 pb-3">
       <label className="flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] hover:bg-base-200 border border-[#4b4b4b] relative overflow-hidden items-center justify-center">
         {file ? (
           <Image

@@ -37,13 +37,13 @@ export default function NewPost() {
 
   return (
     <form
-      className="flex flex-col items-center bg-accent border border-[#3b3b3b] rounded-[3px]"
+      className="flex flex-col items-center bg-accent border border-[#3b3b3b] rounded-[3px] p-6"
       onSubmit={handleSubmit(handleCreatePost)}
     >
       <InputImage getFile={getFile} {...register('avatar')} />
       <Input {...register('author')} error={errors.author} />
       <Input {...register('content')} error={errors.content} />
-      <div>
+      <div className="pt-7 self-end">
         <button
           type="button"
           className="btn btn-ghost underline"

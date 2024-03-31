@@ -10,9 +10,9 @@ export const Input = forwardRef(
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
-      <div className="py-2">
+      <div className="py-1 w-full">
         <input
-          className="input bg-base-200"
+          className="input bg-base-200 w-full"
           type={type}
           name={name}
           {...rest}

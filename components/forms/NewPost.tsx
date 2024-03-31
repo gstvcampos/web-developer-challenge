@@ -8,6 +8,7 @@ import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { Input } from '../ui/Input'
 import InputImage from '../ui/InputImg'
+import { Textarea } from '../ui/Textare'
 
 export default function NewPost() {
   const [isPending, startTransition] = useTransition()
@@ -41,8 +42,17 @@ export default function NewPost() {
       onSubmit={handleSubmit(handleCreatePost)}
     >
       <InputImage getFile={getFile} {...register('avatar')} />
-      <Input {...register('author')} error={errors.author} />
-      <Input {...register('content')} error={errors.content} />
+      <Input
+        {...register('author')}
+        placeholder="Digite seu nome"
+        error={errors.author}
+      />
+      <Textarea
+        className="h-20 text-area"
+        {...register('content')}
+        placeholder="Mensagem"
+        error={errors.content}
+      />
       <div className="pt-7 self-end">
         <button
           type="button"

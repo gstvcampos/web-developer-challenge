@@ -1,18 +1,23 @@
+import { cn } from '@/lib/ultis'
 import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: { message?: string }
+  className?: string
 }
 
 export const Input = forwardRef(
   (
-    { name, type = 'text', error, ...rest }: InputProps,
+    { name, type = 'text', error, className, ...rest }: InputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
       <div className="py-1 w-full">
         <input
-          className="input bg-base-200 w-full"
+          className={cn(
+            className,
+            'input bg-base-200 w-full text-sm focus:outline-none',
+          )}
           type={type}
           name={name}
           {...rest}

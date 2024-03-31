@@ -30,7 +30,7 @@ export default function InputImage({
 
   return (
     <div className="flex items-center gap-4">
-      <label className="flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] bg-base-300 hover:bg-base-200 relative overflow-hidden">
+      <label className="flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] hover:bg-base-200 border border-[#4b4b4b] relative overflow-hidden items-center justify-center">
         {file ? (
           <Image
             alt=""
@@ -39,21 +39,20 @@ export default function InputImage({
             src={URL.createObjectURL(file)}
           />
         ) : (
-          <div className="flex flex-col items-center pt-3">
-            <ImagePlaceholderIcon />
-            <p className="text-xs tracking-wider">seu avatar</p>
-          </div>
+          <ImagePlaceholderIcon />
         )}
         <input
           type="file"
           onChange={handleFile}
-          className="opacity-0"
+          className="hidden"
           name="file"
         />
       </label>
-      <button type="button" onClick={() => setFile(null)}>
-        <TrashIcon />
-      </button>
+      {file && (
+        <button type="button" onClick={() => setFile(null)}>
+          <TrashIcon />
+        </button>
+      )}
     </div>
   )
 }

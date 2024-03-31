@@ -11,7 +11,7 @@ import InputImage from '../ui/InputImg'
 
 export default function NewPost() {
   const [isPending, startTransition] = useTransition()
-  const [avatar, setAvatar] = useState<File | null>(null);
+  const [avatar, setAvatar] = useState<File | null>(null)
   const {
     register,
     handleSubmit,
@@ -36,7 +36,10 @@ export default function NewPost() {
   }
 
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit(handleCreatePost)}>
+    <form
+      className="flex flex-col items-center bg-accent border border-[#3b3b3b] rounded-[3px]"
+      onSubmit={handleSubmit(handleCreatePost)}
+    >
       <InputImage getFile={getFile} {...register('avatar')} />
       <Input {...register('author')} error={errors.author} />
       <Input {...register('content')} error={errors.content} />

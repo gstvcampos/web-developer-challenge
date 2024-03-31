@@ -6,10 +6,13 @@ export default async function Home() {
   const posts = await prisma.post.findMany()
 
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[34.25rem] px-2 py-12 space-y-14">
       <NewPost />
-      {posts &&
-        posts.map((post) => <PostContainer key={post.id} post={post} />)}
+      <div>
+        <h4>Feed</h4>
+        {posts &&
+          posts.map((post) => <PostContainer key={post.id} post={post} />)}
+      </div>
     </div>
   )
 }

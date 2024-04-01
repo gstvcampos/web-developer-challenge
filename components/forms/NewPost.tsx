@@ -74,12 +74,11 @@ export default function NewPost() {
         placeholder="Mensagem"
         error={errors.content}
       />
-      <div className="pt-7 self-end">
+      <div className="pt-7 self-end space-x-8">
         <button
           type="button"
-          className="btn btn-ghost underline"
+          className="underline text-neutral text-sm hover:text-primary-content"
           onClick={handleResete}
-          disabled={!isDirty || isPending}
         >
           Descartar
         </button>

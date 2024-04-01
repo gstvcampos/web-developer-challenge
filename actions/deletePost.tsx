@@ -3,8 +3,7 @@
 import { prisma } from '@/db/prisma'
 import { revalidatePath } from 'next/cache'
 
-export default async function deletePost(id) {
-  console.log('Deleting post with id:', id)
+export default async function deletePost(id: string) {
   await prisma.post.delete({ where: { id } })
 
   revalidatePath('/')

@@ -3,7 +3,9 @@ import PostContainer from '@/components/layout/PostContainer'
 import { prisma } from '@/db/prisma'
 
 export default async function Home() {
-  const posts = await prisma.post.findMany()
+  const posts = await prisma.post.findMany({
+    orderBy: { createdAt: 'desc' },
+  })
 
   return (
     <div className="mx-auto w-full max-w-[34.25rem] px-2 py-12 space-y-14">

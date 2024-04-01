@@ -8,10 +8,11 @@ datasource db {
 }
 
 model Post {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  avatar  String?
-  author  String
-  content String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  avatar    String?
+  author    String
+  content   String
+  createdAt DateTime @default(now())
 
   @@map("posts")
 }

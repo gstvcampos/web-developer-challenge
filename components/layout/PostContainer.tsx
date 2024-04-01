@@ -1,5 +1,7 @@
 import { Post } from '@prisma/client'
+import Image from 'next/image'
 import { DeleteIcon } from '../icons/DeleteIcon'
+import { ImagePlaceholderIcon } from '../icons/ImagePlaceholderIcon'
 
 export default function PostContainer({ post }: { post: Post }) {
   return (
@@ -7,14 +9,18 @@ export default function PostContainer({ post }: { post: Post }) {
       <button className="absolute top-3 right-3">
         <DeleteIcon />
       </button>
-      <div>
-        <h2>asdas{post.author}</h2>
+      <div className="flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] hover:bg-base-200 border border-[#4b4b4b] relative overflow-hidden items-center justify-center">
+        {post.avatar ? (
+          <Image alt="" fill objectFit="cover" src={post.avatar} />
+        ) : (
+          <ImagePlaceholderIcon />
+        )}
       </div>
       <div>
-        <p>{post.content}</p>
+        <p className="pb-6 text-accent-content">{post.content}</p>
         <div className="flex flex-col">
-          <span>Enviado por</span>
-          <span>{post.author}</span>
+          <p className="text-xs text-neutral">Enviado por</p>
+          <p className="text-sm text-info">{post.author}</p>
         </div>
       </div>
     </div>

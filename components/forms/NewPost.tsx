@@ -6,6 +6,7 @@ import { createPostSchema } from '@/schemas/post'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
+import { Toaster, toast } from 'sonner'
 import { Input } from '../ui/Input'
 import { InputImage } from '../ui/InputImg'
 import { Textarea } from '../ui/Textare'
@@ -40,15 +41,14 @@ export default function NewPost() {
       createPost(formData)
         .then((data) => {
           if (data?.error) {
-            console.log(data.error)
+            toast(data.error)
           }
-
           if (data?.success) {
             reset()
-            console.log(data.success)
+            toast(data.success)
           }
         })
-        .catch(() => console.log('Erro ao criar post'))
+        .catch(() => toast('Erro ao criar post'))
     })
   }
 
@@ -108,6 +108,7 @@ export default function NewPost() {
           Publicar
         </button>
       </div>
+      <Toaster />
     </form>
   )
 }

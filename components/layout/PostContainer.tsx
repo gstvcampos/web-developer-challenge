@@ -1,14 +1,12 @@
 import { Post } from '@prisma/client'
 import Image from 'next/image'
-import { DeleteIcon } from '../icons/DeleteIcon'
+import DeleteBtn from '../buttons/DeleteBtn'
 import { ImagePlaceholderIcon } from '../icons/ImagePlaceholderIcon'
 
-export default function PostContainer({ post }: { post: Post }) {
+export default async function PostContainer({ post }: { post: Post }) {
   return (
     <div className="relative flex flex-col sm:flex-row items-center bg-accent border border-[#3b3b3b] rounded-[3px] px-6 pt-14 pb-8 gap-8">
-      <button className="absolute top-3 right-3">
-        <DeleteIcon />
-      </button>
+      <DeleteBtn id={post.id} />
       <div className="flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] hover:bg-base-200 border border-[#4b4b4b] relative overflow-hidden items-center justify-center">
         {post.avatar ? (
           <Image alt="" fill objectFit="cover" src={post.avatar} />

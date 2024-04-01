@@ -107,6 +107,7 @@ export default function NewPost() {
           disabled={!isValid || isPending}
         >
           Publicar
+          {isPending && <span className="loading loading-spinner loading-md" />}
         </button>
       </div>
       <Toaster />

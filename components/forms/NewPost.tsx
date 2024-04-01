@@ -17,7 +17,7 @@ export default function NewPost() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
   } = useForm<CreatePost>({
     resolver: zodResolver(createPostSchema),
     defaultValues: {

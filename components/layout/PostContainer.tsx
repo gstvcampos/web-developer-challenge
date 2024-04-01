@@ -19,7 +19,7 @@ export default async function PostContainer({ post }: { post: Post }) {
             <Image
               alt="avatar do autor"
               fill
-              objectFit="cover"
+              className="object-cover"
               src={post.avatar}
             />
           ) : (

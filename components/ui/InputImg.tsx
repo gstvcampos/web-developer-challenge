@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/ultis'
 import Image from 'next/image'
 import { InputHTMLAttributes, forwardRef } from 'react'
 import { ImagePlaceholderIcon } from '../icons/ImagePlaceholderIcon'
@@ -18,7 +19,12 @@ export const InputImage = forwardRef<HTMLInputElement, InputImageProps>(
 
     return (
       <div className="flex items-center gap-4 pb-3">
-        <label className="flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] hover:bg-base-200 border border-[#4b4b4b] relative overflow-hidden items-center justify-center">
+        <label
+          className={cn(
+            'flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] hover:bg-base-200 border-[#4b4b4b] relative overflow-hidden items-center justify-center',
+            !avatar && 'border',
+          )}
+        >
           {avatar ? (
             <Image
               alt="avatar do autor"

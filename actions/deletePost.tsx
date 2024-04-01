@@ -7,5 +7,5 @@ export default async function deletePost(id: string) {
   await prisma.post.delete({ where: { id } })
 
   revalidatePath('/')
-  return { success: 'Post deleteado com sucesso' }
+  return { success: 'Postagem deleteado com sucesso' }
 }

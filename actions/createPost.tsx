@@ -27,5 +27,5 @@ export default async function createPost(formData: FormData) {
   })
 
   revalidatePath('/')
-  return { success: 'Post criado com sucesso' }
+  return { success: 'Postagem criado com sucesso' }
 }

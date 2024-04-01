@@ -1,5 +1,7 @@
+'use client'
+
 import Image from 'next/image'
-import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react'
+import { InputHTMLAttributes, forwardRef } from 'react'
 import { ImagePlaceholderIcon } from '../icons/ImagePlaceholderIcon'
 import { TrashIcon } from '../icons/TrashIcon'
 
@@ -8,19 +10,20 @@ interface InputImageProps extends InputHTMLAttributes<HTMLInputElement> {
   avatar: File | null
 }
 
-export const InputImage = forwardRef(
-  (
-    { setAvatar, avatar, ...rest }: InputImageProps,
-    ref: ForwardedRef<HTMLInputElement>,
-  ) => {
+export const InputImage = forwardRef<HTMLInputElement, InputImageProps>(
+  ({ setAvatar, avatar, ...rest }, ref) => {
+    const handleRemove = () => {
+      setAvatar(null)
+    }
+
     return (
       <div className="flex items-center gap-4 pb-3">
         <label className="flex cursor-pointer flex-col w-[88px] h-[88px] rounded-[36px] hover:bg-base-200 border border-[#4b4b4b] relative overflow-hidden items-center justify-center">
           {avatar ? (
             <Image
-              alt=""
+              alt="avatar do autor"
               fill
-              objectFit="cover"
+              className="object-cover"
               src={URL.createObjectURL(avatar)}
             />
           ) : (
@@ -29,7 +32,7 @@ export const InputImage = forwardRef(
           <input type="file" className="hidden" ref={ref} {...rest} />
         </label>
         {avatar && (
-          <button type="button" onClick={() => setAvatar(null)}>
+          <button type="button" onClick={handleRemove}>
             <TrashIcon />
           </button>
         )}

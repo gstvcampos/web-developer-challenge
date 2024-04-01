@@ -37,8 +37,9 @@ export default function NewPost() {
     reset()
   }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newFile = e.target.files?.[0]
+
     if (newFile) {
       const fileType = newFile.type
       const validImageTypes = [
@@ -51,6 +52,7 @@ export default function NewPost() {
         setAvatar(newFile)
       }
     }
+    e.target.value = ''
   }
 
   return (
@@ -58,11 +60,7 @@ export default function NewPost() {
       className="flex flex-col items-center bg-accent border border-[#3b3b3b] rounded-[3px] p-6"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <InputImage
-        avatar={avatar}
-        setAvatar={setAvatar}
-        onChange={handleFileChange}
-      />
+      <InputImage avatar={avatar} setAvatar={setAvatar} onChange={handleFile} />
       <Input
         {...register('author')}
         placeholder="Digite seu nome"

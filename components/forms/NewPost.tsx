@@ -45,6 +45,7 @@ export default function NewPost() {
           }
           if (data?.success) {
             reset()
+            setAvatar(null)
             toast(data.success)
           }
         })

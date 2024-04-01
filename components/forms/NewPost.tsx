@@ -27,8 +27,28 @@ export default function NewPost() {
   })
 
   const onSubmit = (values: CreatePost) => {
+    const formData = new FormData()
+    for (const key in values) {
+      formData.append(key, values[key as keyof CreatePost])
+    }
+
+    if (avatar) {
+      formData.append('avatar', avatar)
+    }
+
     startTransition(() => {
-      createPost(values)
+      createPost(formData)
+        .then((data) => {
+          if (data?.error) {
+            console.log(data.error)
+          }
+
+          if (data?.success) {
+            reset()
+            console.log(data.success)
+          }
+        })
+        .catch(() => console.log('Erro ao criar post'))
     })
   }
 
